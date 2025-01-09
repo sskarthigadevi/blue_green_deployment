@@ -1,0 +1,24 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  BLUE_ENV: "blue"
+  GREEN_ENV: "green"
+
+build:
+  stage: build
+  script:
+    - docker build -t karthigaadevi12/app:$CI_COMMIT_REF_NAME .
+    - docker push karthigaadevi12/app:$CI_COMMIT_REF_NAME
+
+deploy:
+  stage: deploy
+  script:
+    - kubectl apply -f deployment_$GREEN_ENV.yaml
+    - kubectl apply -f service.yaml
+    - # Test Green environment
+    - kubectl rollout status deployment/app-$GREEN_ENV
+    - # Switch Nginx to Green if successful
+    - kubectl apply -f nginx/nginx.conf
+

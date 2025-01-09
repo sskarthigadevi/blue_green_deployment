@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-blue
+  labels:
+    app: app
+    version: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: app
+        version: blue
+    spec:
+      containers:
+      - name: app-container
+        image: karthigaadevi12/app:blue
+        ports:
+        - containerPort: 8080
+

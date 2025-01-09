@@ -1,0 +1,16 @@
+{
+  "dashboard": {
+    "title": "Blue-Green App Metrics",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Request Latency",
+        "targets": [
+          {
+            "expr": "http_request_duration_seconds"
+          }
+        ]
+      }
+    ]
+  }
+}

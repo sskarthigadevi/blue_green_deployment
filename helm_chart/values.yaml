@@ -1,0 +1,8 @@
+replicaCount: 3
+image:
+  repository: karthigaadevi12/app
+  tag: latest
+service:
+  type: LoadBalancer
+  port: 80
+ 
